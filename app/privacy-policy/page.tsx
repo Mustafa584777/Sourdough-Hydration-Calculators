@@ -94,13 +94,13 @@ export default function PrivacyPolicyPage() {
               <p>
                 We may update this Privacy Policy periodically to reflect improvements
                 to the site. Any changes will appear on this page with an updated
-                revision date. If you have questions, please contact us at{' '}
-                <a
-                  href="mailto:hello@sourdoughhydrationcalculator.online"
+                revision date. If you have questions, please reach out through our{' '}
+                <Link
+                  href="/contact"
                   className="font-semibold text-[#C2410C] underline-offset-4 hover:underline"
                 >
-                  hello@sourdoughhydrationcalculator.online
-                </a>
+                  Contact page
+                </Link>
                 .
               </p>
             </section>

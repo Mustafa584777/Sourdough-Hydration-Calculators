@@ -1,9 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import { Check, Copy, Mail, Send } from 'lucide-react';
+import { Check, Mail, Send } from 'lucide-react';
 
-const CONTACT_EMAIL = 'hello@sourdoughhydrationcalculator.online';
+const RECIPIENT_EMAIL = 'htmlcup@gmail.com';
 
 export function ContactForm() {
   const [name, setName] = useState('');
@@ -12,7 +12,14 @@ export function ContactForm() {
   const [message, setMessage] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [submitted, setSubmitted] = useState(false);
-  const [copiedEmail, setCopiedEmail] = useState(false);
+
+  const buildMailtoHref = () => {
+    const subject = `[${topic}] Message from ${name.trim() || 'Reader'}`;
+    const body = `Name: ${name.trim()}\nReply-To: ${email.trim()}\nTopic: ${topic}\n\n${message.trim()}`;
+    return `mailto:${RECIPIENT_EMAIL}?subject=${encodeURIComponent(
+      subject
+    )}&body=${encodeURIComponent(body)}`;
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -28,42 +35,28 @@ export function ContactForm() {
       return;
     }
 
+    const href = buildMailtoHref();
     setSubmitted(true);
+    window.location.href = href;
   };
 
-  const handleCopyEmail = async () => {
-    try {
-      await navigator.clipboard.writeText(CONTACT_EMAIL);
-      setCopiedEmail(true);
-      setTimeout(() => setCopiedEmail(false), 2000);
-    } catch {
-      // Clipboard blocked
-    }
-  };
-
-  const mailtoHref = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
-    `[${topic}] Message from ${name.trim() || 'Reader'}`
-  )}&body=${encodeURIComponent(message.trim())}`;
+  const mailtoHref = buildMailtoHref();
 
   return (
     <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
       <div className="rounded-2xl border border-stone-200 bg-white p-6 sm:p-8 lg:col-span-7">
         {submitted ? (
           <div className="space-y-4 py-4">
-            <div className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">
+            <div className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-emerald-200 bg-emerald-50 text-emerald-700">
               <Check className="h-5 w-5" aria-hidden="true" />
             </div>
             <h2 className="font-serif text-2xl font-semibold text-[#1C1917]">
-              Ready to Send Your Message
+              Message Ready to Send
             </h2>
             <p className="text-sm leading-relaxed text-stone-600">
-              Because this site runs 100% locally in your browser without storing form
-              submissions on a server, click below to open your message directly in your
-              email app addressed to{' '}
-              <span className="font-mono font-medium text-[#1C1917]">
-                {CONTACT_EMAIL}
-              </span>
-              .
+              Your email app has been triggered with your message pre-filled. If it did
+              not open automatically, click the button below to launch your mail client
+              and complete sending.
             </p>
             <div className="flex flex-wrap items-center gap-3 pt-2">
               <a
@@ -71,13 +64,12 @@ export function ContactForm() {
                 className="inline-flex h-10 items-center gap-2 rounded-lg bg-[#C2410C] px-5 text-sm font-semibold text-white transition-colors hover:bg-[#9A3412] whitespace-nowrap"
               >
                 <Mail className="h-4 w-4" aria-hidden="true" />
-                <span>Open in Email Client</span>
+                <span>Open Email App</span>
               </a>
               <button
                 type="button"
                 onClick={() => {
                   setSubmitted(false);
-                  setMessage('');
                 }}
                 className="inline-flex h-10 items-center rounded-lg border border-stone-300 bg-white px-4 text-sm font-medium text-[#1C1917] hover:bg-stone-50 cursor-pointer"
               >
@@ -88,7 +80,7 @@ export function ContactForm() {
         ) : (
           <form onSubmit={handleSubmit} className="space-y-4" noValidate>
             <h2 className="font-serif text-xl font-semibold text-[#1C1917]">
-              Send a Note
+              Send a Message
             </h2>
 
             {error && (
@@ -182,7 +174,7 @@ export function ContactForm() {
               className="inline-flex h-10 items-center gap-2 rounded-lg bg-[#C2410C] px-5 text-sm font-semibold text-white transition-colors hover:bg-[#9A3412] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C2410C] cursor-pointer"
             >
               <Send className="h-4 w-4" aria-hidden="true" />
-              <span>Prepare Message</span>
+              <span>Send Message</span>
             </button>
           </form>
         )}
@@ -191,37 +183,13 @@ export function ContactForm() {
       <aside className="space-y-6 lg:col-span-5">
         <div className="rounded-2xl border border-stone-200 bg-white p-6">
           <h2 className="font-serif text-xl font-semibold text-[#1C1917]">
-            Direct Email
+            How Messages Work
           </h2>
           <p className="mt-2 text-sm leading-relaxed text-stone-600">
-            Prefer to reach out directly? Write to us anytime with formula ideas,
-            accessibility notes, or partnership inquiries.
+            Fill out the form and click Send Message. Your message stays private—nothing
+            is stored in a third-party database—and opens directly in your email app for
+            delivery.
           </p>
-          <div className="mt-4 flex flex-wrap items-center gap-2">
-            <a
-              href={`mailto:${CONTACT_EMAIL}`}
-              className="font-mono text-sm font-semibold text-[#C2410C] hover:underline break-all"
-            >
-              {CONTACT_EMAIL}
-            </a>
-          </div>
-          <button
-            type="button"
-            onClick={handleCopyEmail}
-            className="mt-3 inline-flex h-9 items-center gap-2 rounded-lg border border-stone-300 bg-[#FAF8F5] px-3.5 text-xs font-semibold text-[#1C1917] hover:bg-stone-100 cursor-pointer"
-          >
-            {copiedEmail ? (
-              <>
-                <Check className="h-3.5 w-3.5 text-emerald-700" aria-hidden="true" />
-                <span>Email Copied</span>
-              </>
-            ) : (
-              <>
-                <Copy className="h-3.5 w-3.5 text-stone-600" aria-hidden="true" />
-                <span>Copy Email Address</span>
-              </>
-            )}
-          </button>
         </div>
 
         <div className="rounded-2xl border border-stone-200 bg-white p-6">
