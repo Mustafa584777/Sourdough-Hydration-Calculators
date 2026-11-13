@@ -1,29 +1,29 @@
 import type { Metadata, Viewport } from 'next';
-import { Fraunces, Plus_Jakarta_Sans, JetBrains_Mono } from 'next/font/google';
+import localFont from 'next/font/local';
 import './globals.css';
 
-const fraunces = Fraunces({
-  subsets: ['latin'],
+const fraunces = localFont({
+  src: './fonts/fraunces.woff2',
   variable: '--font-fraunces',
   display: 'swap',
-  weight: ['600', '700'],
-  adjustFontFallback: true,
+  weight: '600 700',
+  fallback: ['Georgia', 'serif'],
 });
 
-const plusJakartaSans = Plus_Jakarta_Sans({
-  subsets: ['latin'],
+const plusJakartaSans = localFont({
+  src: './fonts/plus-jakarta-sans.woff2',
   variable: '--font-plus-jakarta',
   display: 'swap',
-  weight: ['400', '500', '600', '700'],
-  adjustFontFallback: true,
+  weight: '400 700',
+  fallback: ['system-ui', 'sans-serif'],
 });
 
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ['latin'],
+const jetbrainsMono = localFont({
+  src: './fonts/jetbrains-mono.woff2',
   variable: '--font-jetbrains-mono',
   display: 'swap',
-  weight: ['500', '600'],
-  adjustFontFallback: true,
+  weight: '500 600',
+  fallback: ['ui-monospace', 'monospace'],
 });
 
 const SITE_URL = 'https://sourdoughhydrationcalculator.online';
