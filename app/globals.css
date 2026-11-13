@@ -17,12 +17,14 @@ html {
   scroll-behavior: smooth;
   background-color: var(--bg-cream);
   color: var(--ink-charcoal);
+  overflow-x: clip;
 }
 
 body {
   background-color: var(--bg-cream);
   color: var(--ink-charcoal);
   font-family: var(--font-sans);
+  overflow-x: clip;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

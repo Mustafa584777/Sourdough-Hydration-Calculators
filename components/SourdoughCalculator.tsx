@@ -253,18 +253,18 @@ export function SourdoughCalculator() {
         </div>
 
         {/* Unit & Mode Segmented Controls */}
-        <div className="flex flex-wrap items-center gap-3">
+        <div className="flex w-full flex-col gap-2.5 sm:w-auto sm:flex-row sm:flex-wrap sm:items-center sm:gap-3">
           <div
             role="tablist"
             aria-label="Calculator mode"
-            className="inline-flex rounded-lg border border-stone-200 bg-stone-100/90 p-1"
+            className="flex w-full rounded-lg border border-stone-200 bg-stone-100/90 p-1 sm:inline-flex sm:w-auto"
           >
             <button
               type="button"
               role="tab"
               aria-selected={mode === 'forward'}
               onClick={() => setMode('forward')}
-              className={`h-9 rounded-md px-3.5 text-xs font-semibold transition-colors whitespace-nowrap shrink-0 cursor-pointer ${
+              className={`h-10 flex-1 rounded-md px-2.5 text-center text-xs font-semibold transition-colors whitespace-nowrap sm:h-9 sm:flex-none sm:px-3.5 shrink-0 cursor-pointer ${
                 mode === 'forward'
                   ? 'bg-white text-[#1C1917] shadow-xs'
                   : 'text-stone-600 hover:text-[#1C1917]'
@@ -277,7 +277,7 @@ export function SourdoughCalculator() {
               role="tab"
               aria-selected={mode === 'target'}
               onClick={() => setMode('target')}
-              className={`h-9 rounded-md px-3.5 text-xs font-semibold transition-colors whitespace-nowrap shrink-0 cursor-pointer ${
+              className={`h-10 flex-1 rounded-md px-2.5 text-center text-xs font-semibold transition-colors whitespace-nowrap sm:h-9 sm:flex-none sm:px-3.5 shrink-0 cursor-pointer ${
                 mode === 'target'
                   ? 'bg-white text-[#1C1917] shadow-xs'
                   : 'text-stone-600 hover:text-[#1C1917]'
@@ -290,13 +290,13 @@ export function SourdoughCalculator() {
           <div
             role="group"
             aria-label="Measurement unit"
-            className="inline-flex rounded-lg border border-stone-200 bg-stone-100/90 p-1"
+            className="flex w-full rounded-lg border border-stone-200 bg-stone-100/90 p-1 sm:inline-flex sm:w-auto"
           >
             <button
               type="button"
               onClick={() => setUnit('g')}
               aria-pressed={unit === 'g'}
-              className={`h-9 rounded-md px-3 text-xs font-semibold transition-colors whitespace-nowrap shrink-0 cursor-pointer ${
+              className={`h-10 flex-1 rounded-md px-3 text-center text-xs font-semibold transition-colors whitespace-nowrap sm:h-9 sm:flex-none shrink-0 cursor-pointer ${
                 unit === 'g'
                   ? 'bg-[#1C1917] text-white'
                   : 'text-stone-600 hover:text-[#1C1917]'
@@ -308,7 +308,7 @@ export function SourdoughCalculator() {
               type="button"
               onClick={() => setUnit('oz')}
               aria-pressed={unit === 'oz'}
-              className={`h-9 rounded-md px-3 text-xs font-semibold transition-colors whitespace-nowrap shrink-0 cursor-pointer ${
+              className={`h-10 flex-1 rounded-md px-3 text-center text-xs font-semibold transition-colors whitespace-nowrap sm:h-9 sm:flex-none shrink-0 cursor-pointer ${
                 unit === 'oz'
                   ? 'bg-[#1C1917] text-white'
                   : 'text-stone-600 hover:text-[#1C1917]'
@@ -334,7 +334,7 @@ export function SourdoughCalculator() {
         <>
           {/* Quick Recipe Presets (1-Click Load) */}
           <div className="no-print mb-5">
-            <div className="flex flex-wrap items-center gap-2">
+            <div className="grid grid-cols-1 gap-2 sm:flex sm:flex-wrap sm:items-center">
               <span className="mr-1 text-xs font-semibold uppercase tracking-wider text-stone-500">
                 Presets:
               </span>
@@ -345,7 +345,7 @@ export function SourdoughCalculator() {
                     key={preset.id}
                     type="button"
                     onClick={() => handleLoadPreset(preset.id)}
-                    className={`inline-flex h-10 items-center gap-1.5 rounded-lg border px-3.5 text-xs font-medium transition-colors whitespace-nowrap shrink-0 cursor-pointer ${
+                    className={`inline-flex min-h-[42px] w-full items-center justify-between gap-1.5 rounded-lg border px-3.5 py-2 text-left text-xs font-medium transition-colors sm:h-10 sm:w-auto sm:justify-start sm:whitespace-nowrap shrink-0 cursor-pointer ${
                       isActive
                         ? 'border-[#C2410C] bg-[#C2410C]/8 text-[#9A3412] font-semibold'
                         : 'border-stone-200 bg-white text-stone-700 hover:border-stone-300 hover:bg-stone-50'
@@ -353,7 +353,7 @@ export function SourdoughCalculator() {
                     title={preset.description}
                   >
                     <span>{preset.name}</span>
-                    <span className="font-mono text-[11px] opacity-80 tabular-nums">
+                    <span className="font-mono text-[11px] opacity-80 tabular-nums shrink-0">
                       ({preset.hydrationLabel})
                     </span>
                   </button>
@@ -406,7 +406,7 @@ export function SourdoughCalculator() {
                     return (
                       <div
                         key={flour.id}
-                        className="flex flex-wrap items-center gap-2 sm:flex-nowrap"
+                        className="flex flex-col gap-2 sm:flex-row sm:items-center sm:flex-nowrap"
                       >
                         <div className="min-w-0 flex-1">
                           <label htmlFor={`flour-name-${flour.id}`} className="sr-only">
@@ -437,28 +437,30 @@ export function SourdoughCalculator() {
                           </select>
                         </div>
 
-                        <div className="w-32 shrink-0 sm:w-36">
-                          <NumericUnitInput
-                            id={`flour-weight-${flour.id}`}
-                            grams={scaledGrams}
-                            unit={unit}
-                            ariaLabel={`${flour.name} weight`}
-                            onChangeGrams={(val) =>
-                              handleUpdateFlourWeight(flour.id, val)
-                            }
-                          />
-                        </div>
+                        <div className="flex items-center gap-2 shrink-0">
+                          <div className="flex-1 sm:w-36 sm:flex-none">
+                            <NumericUnitInput
+                              id={`flour-weight-${flour.id}`}
+                              grams={scaledGrams}
+                              unit={unit}
+                              ariaLabel={`${flour.name} weight`}
+                              onChangeGrams={(val) =>
+                                handleUpdateFlourWeight(flour.id, val)
+                              }
+                            />
+                          </div>
 
-                        {recipe.flours.length > 1 && (
-                          <button
-                            type="button"
-                            onClick={() => handleRemoveFlour(flour.id)}
-                            aria-label={`Remove ${flour.name}`}
-                            className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-stone-200 text-stone-500 hover:border-red-200 hover:bg-red-50 hover:text-red-700 cursor-pointer"
-                          >
-                            <Trash2 className="h-4 w-4" aria-hidden="true" />
-                          </button>
-                        )}
+                          {recipe.flours.length > 1 && (
+                            <button
+                              type="button"
+                              onClick={() => handleRemoveFlour(flour.id)}
+                              aria-label={`Remove ${flour.name}`}
+                              className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-stone-200 text-stone-500 hover:border-red-200 hover:bg-red-50 hover:text-red-700 cursor-pointer"
+                            >
+                              <Trash2 className="h-4 w-4" aria-hidden="true" />
+                            </button>
+                          )}
+                        </div>
                       </div>
                     );
                   })}
@@ -831,7 +833,7 @@ export function SourdoughCalculator() {
                 </div>
 
                 {/* Secondary KPI Trio */}
-                <div className="grid grid-cols-3 gap-4 text-right sm:gap-6">
+                <div className="grid w-full grid-cols-3 gap-3 text-left sm:w-auto sm:gap-6 sm:text-right">
                   <div>
                     <span className="block text-[11px] font-semibold uppercase tracking-wider text-stone-500">
                       Inoculation
@@ -1007,11 +1009,11 @@ export function SourdoughCalculator() {
               </div>
 
               {/* Action Bar */}
-              <div className="no-print flex flex-wrap items-center gap-2.5 border-t border-stone-200/80 pt-4">
+              <div className="no-print grid grid-cols-2 gap-2.5 border-t border-stone-200/80 pt-4 sm:flex sm:flex-wrap sm:items-center">
                 <button
                   type="button"
                   onClick={handleCopyRecipe}
-                  className="inline-flex h-10 items-center gap-2 rounded-lg bg-[#C2410C] px-4 text-sm font-semibold text-white transition-colors hover:bg-[#9A3412] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C2410C] whitespace-nowrap shrink-0 cursor-pointer"
+                  className="inline-flex h-10 items-center justify-center gap-2 rounded-lg bg-[#C2410C] px-3.5 text-sm font-semibold text-white transition-colors hover:bg-[#9A3412] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C2410C] sm:px-4 whitespace-nowrap shrink-0 cursor-pointer"
                 >
                   {copied ? (
                     <>
@@ -1029,16 +1031,16 @@ export function SourdoughCalculator() {
                 <button
                   type="button"
                   onClick={() => setShareOpen(true)}
-                  className="inline-flex h-10 items-center gap-2 rounded-lg border border-stone-300 bg-white px-4 text-sm font-medium text-[#1C1917] transition-colors hover:bg-stone-50 whitespace-nowrap shrink-0 cursor-pointer"
+                  className="inline-flex h-10 items-center justify-center gap-2 rounded-lg border border-stone-300 bg-white px-3.5 text-sm font-medium text-[#1C1917] transition-colors hover:bg-stone-50 sm:px-4 whitespace-nowrap shrink-0 cursor-pointer"
                 >
                   <ImageIcon className="h-4 w-4 text-[#C2410C]" aria-hidden="true" />
-                  <span>Share Card (PNG)</span>
+                  <span>Share Card</span>
                 </button>
 
                 <button
                   type="button"
                   onClick={() => window.print()}
-                  className="inline-flex h-10 items-center gap-2 rounded-lg border border-stone-300 bg-white px-4 text-sm font-medium text-[#1C1917] transition-colors hover:bg-stone-50 whitespace-nowrap shrink-0 cursor-pointer"
+                  className="inline-flex h-10 items-center justify-center gap-2 rounded-lg border border-stone-300 bg-white px-3.5 text-sm font-medium text-[#1C1917] transition-colors hover:bg-stone-50 sm:px-4 whitespace-nowrap shrink-0 cursor-pointer"
                 >
                   <Printer className="h-4 w-4 text-stone-600" aria-hidden="true" />
                   <span>Print Sheet</span>
@@ -1047,7 +1049,7 @@ export function SourdoughCalculator() {
                 <button
                   type="button"
                   onClick={handleReset}
-                  className="ml-auto inline-flex h-10 items-center gap-1.5 rounded-lg px-3 text-xs font-semibold text-stone-500 transition-colors hover:bg-stone-100 hover:text-[#1C1917] whitespace-nowrap shrink-0 cursor-pointer"
+                  className="inline-flex h-10 items-center justify-center gap-1.5 rounded-lg border border-stone-200 px-3 text-xs font-semibold text-stone-600 transition-colors hover:bg-stone-100 hover:text-[#1C1917] sm:ml-auto sm:border-transparent whitespace-nowrap shrink-0 cursor-pointer"
                 >
                   <RotateCcw className="h-3.5 w-3.5" aria-hidden="true" />
                   <span>Reset</span>
@@ -1299,7 +1301,7 @@ export function SourdoughCalculator() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-5 text-right">
+                  <div className="grid w-full grid-cols-2 gap-4 text-left sm:w-auto sm:gap-5 sm:text-right">
                     <div>
                       <span className="block text-[11px] font-semibold uppercase tracking-wider text-stone-500">
                         Added Flour Needed
@@ -1341,59 +1343,61 @@ export function SourdoughCalculator() {
                   <h3 className="mb-3 text-sm font-semibold text-[#1C1917]">
                     Mixing Bowl Checklist
                   </h3>
-                  <table className="w-full border-collapse text-sm">
-                    <thead>
-                      <tr className="border-b border-stone-200 text-left text-[11px] font-semibold uppercase tracking-wider text-stone-500">
-                        <th className="py-2 pr-3 font-semibold">Ingredient</th>
-                        <th className="py-2 px-2 text-right font-semibold">Add to Bowl</th>
-                        <th className="py-2 pl-2 text-right font-semibold">Total Incl. Starter</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-stone-100">
-                      <tr>
-                        <td className="py-2.5 pr-3 font-medium text-[#1C1917]">Flour</td>
-                        <td className="py-2.5 px-2 text-right font-mono font-semibold text-[#1C1917] tabular-nums">
-                          {formatWeight(targetResult.addedFlourNeededGrams, unit)}
-                        </td>
-                        <td className="py-2.5 pl-2 text-right font-mono text-stone-600 tabular-nums">
-                          {formatWeight(targetResult.totalFlourGrams, unit)} (100%)
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="py-2.5 pr-3 font-medium text-[#1C1917]">Water</td>
-                        <td className="py-2.5 px-2 text-right font-mono font-semibold text-[#C2410C] tabular-nums">
-                          {formatWeight(targetResult.addedWaterNeededGrams, unit)}
-                        </td>
-                        <td className="py-2.5 pl-2 text-right font-mono text-stone-600 tabular-nums">
-                          {formatWeight(targetResult.targetTotalWaterGrams, unit)} (
-                          {targetState.targetHydrationPct.toFixed(1)}%)
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="py-2.5 pr-3 font-medium text-stone-700">
-                          Starter ({targetState.starterHydrationPct}% hyd.)
-                        </td>
-                        <td className="py-2.5 px-2 text-right font-mono font-medium text-[#1C1917] tabular-nums">
-                          {formatWeight(targetResult.starterGrams, unit)}
-                        </td>
-                        <td className="py-2.5 pl-2 text-right font-mono text-stone-500 tabular-nums">
-                          {formatWeight(targetResult.starterFlourGrams, unit)}F /{' '}
-                          {formatWeight(targetResult.starterWaterGrams, unit)}W
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="py-2.5 pr-3 font-medium text-stone-700">
-                          Salt ({targetState.saltPercent}%)
-                        </td>
-                        <td className="py-2.5 px-2 text-right font-mono font-medium text-[#1C1917] tabular-nums">
-                          {formatWeight(targetResult.saltGrams, unit)}
-                        </td>
-                        <td className="py-2.5 pl-2 text-right font-mono text-stone-600 tabular-nums">
-                          {formatWeight(targetResult.saltGrams, unit)}
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
+                  <div className="overflow-x-auto">
+                    <table className="w-full border-collapse text-sm">
+                      <thead>
+                        <tr className="border-b border-stone-200 text-left text-[11px] font-semibold uppercase tracking-wider text-stone-500">
+                          <th className="py-2 pr-3 font-semibold">Ingredient</th>
+                          <th className="py-2 px-2 text-right font-semibold">Add to Bowl</th>
+                          <th className="py-2 pl-2 text-right font-semibold">Total Incl. Starter</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-stone-100">
+                        <tr>
+                          <td className="py-2.5 pr-3 font-medium text-[#1C1917]">Flour</td>
+                          <td className="py-2.5 px-2 text-right font-mono font-semibold text-[#1C1917] tabular-nums">
+                            {formatWeight(targetResult.addedFlourNeededGrams, unit)}
+                          </td>
+                          <td className="py-2.5 pl-2 text-right font-mono text-stone-600 tabular-nums">
+                            {formatWeight(targetResult.totalFlourGrams, unit)} (100%)
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className="py-2.5 pr-3 font-medium text-[#1C1917]">Water</td>
+                          <td className="py-2.5 px-2 text-right font-mono font-semibold text-[#C2410C] tabular-nums">
+                            {formatWeight(targetResult.addedWaterNeededGrams, unit)}
+                          </td>
+                          <td className="py-2.5 pl-2 text-right font-mono text-stone-600 tabular-nums">
+                            {formatWeight(targetResult.targetTotalWaterGrams, unit)} (
+                            {targetState.targetHydrationPct.toFixed(1)}%)
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className="py-2.5 pr-3 font-medium text-stone-700">
+                            Starter ({targetState.starterHydrationPct}% hyd.)
+                          </td>
+                          <td className="py-2.5 px-2 text-right font-mono font-medium text-[#1C1917] tabular-nums">
+                            {formatWeight(targetResult.starterGrams, unit)}
+                          </td>
+                          <td className="py-2.5 pl-2 text-right font-mono text-stone-500 tabular-nums">
+                            {formatWeight(targetResult.starterFlourGrams, unit)}F /{' '}
+                            {formatWeight(targetResult.starterWaterGrams, unit)}W
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className="py-2.5 pr-3 font-medium text-stone-700">
+                            Salt ({targetState.saltPercent}%)
+                          </td>
+                          <td className="py-2.5 px-2 text-right font-mono font-medium text-[#1C1917] tabular-nums">
+                            {formatWeight(targetResult.saltGrams, unit)}
+                          </td>
+                          <td className="py-2.5 pl-2 text-right font-mono text-stone-600 tabular-nums">
+                            {formatWeight(targetResult.saltGrams, unit)}
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
 
                 <div className="no-print flex flex-wrap items-center gap-3 border-t border-stone-200/80 pt-4">

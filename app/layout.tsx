@@ -30,7 +30,7 @@ const PAGE_DESCRIPTION =
 
 export const viewport: Viewport = {
   width: 'device-width',
-  initialScale: 1,
+  initialScale: 0.7,
 };
 
 export const metadata: Metadata = {

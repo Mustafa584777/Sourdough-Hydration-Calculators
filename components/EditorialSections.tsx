@@ -25,7 +25,38 @@ export function EditorialSections() {
             </p>
           </div>
 
-          <div className="mt-6 overflow-x-auto rounded-2xl border border-stone-200">
+          {/* Mobile Card List */}
+          <div className="mt-6 space-y-3 md:hidden">
+            {HYDRATION_CHART_ROWS.map((row) => (
+              <div
+                key={row.range}
+                className="rounded-xl border border-stone-200 bg-white p-4 space-y-2"
+              >
+                <div className="flex items-center justify-between gap-2">
+                  <span className="font-mono text-sm font-semibold text-[#C2410C] tabular-nums">
+                    {row.range}
+                  </span>
+                  <span className="text-xs font-semibold text-stone-600">
+                    Difficulty: {row.difficulty}
+                  </span>
+                </div>
+                <p className="text-sm font-semibold text-[#1C1917]">
+                  {row.breadStyle}
+                </p>
+                <p className="text-xs leading-relaxed text-stone-600">
+                  {row.crumbAndCrust}
+                </p>
+                {row.presetId && (
+                  <div className="pt-1">
+                    <PresetLoaderButton presetId={row.presetId} />
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+
+          {/* Desktop Table */}
+          <div className="mt-6 hidden overflow-x-auto rounded-2xl border border-stone-200 md:block">
             <table className="w-full min-w-[640px] border-collapse text-left text-sm">
               <thead>
                 <tr className="border-b border-stone-200 bg-[#FAF8F5] text-xs font-semibold uppercase tracking-wider text-stone-500">
