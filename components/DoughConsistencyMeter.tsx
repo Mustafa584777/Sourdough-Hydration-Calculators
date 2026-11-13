@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, useReducedMotion } from 'motion/react';
+import { LazyMotion, domAnimation, m, useReducedMotion } from 'motion/react';
 import { Info } from 'lucide-react';
 import { getHydrationTier } from '@/lib/sourdough-math';
 
@@ -68,19 +68,21 @@ export function DoughConsistencyMeter({
         </div>
 
         {/* Indicator Needle */}
-        <motion.div
-          className="pointer-events-none absolute top-0 -ml-2 flex flex-col items-center"
-          initial={false}
-          animate={{ left: `${positionPct}%` }}
-          transition={
-            prefersReducedMotion
-              ? { duration: 0 }
-              : { type: 'spring', stiffness: 320, damping: 28 }
-          }
-          style={{ left: `${positionPct}%` }}
-        >
-          <div className="h-5 w-4 rounded-sm border-2 border-white bg-[#C2410C] shadow-sm" />
-        </motion.div>
+        <LazyMotion features={domAnimation}>
+          <m.div
+            className="pointer-events-none absolute top-0 -ml-2 flex flex-col items-center"
+            initial={false}
+            animate={{ left: `${positionPct}%` }}
+            transition={
+              prefersReducedMotion
+                ? { duration: 0 }
+                : { duration: 0.18, ease: [0.16, 1, 0.3, 1] }
+            }
+            style={{ left: `${positionPct}%` }}
+          >
+            <div className="h-5 w-4 rounded-sm border-2 border-white bg-[#C2410C] shadow-sm" />
+          </m.div>
+        </LazyMotion>
 
         {/* Scale Ticks */}
         <div className="mt-2 flex justify-between font-mono text-[11px] text-stone-500 tabular-nums">

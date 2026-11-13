@@ -4,6 +4,9 @@ import { ArrowLeft } from 'lucide-react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 
+export const dynamic = 'force-static';
+export const revalidate = 604800;
+
 export const metadata: Metadata = {
   title: 'Privacy Policy – Sourdough Hydration Calculator',
   description:

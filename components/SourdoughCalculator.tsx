@@ -30,8 +30,13 @@ import {
   getHydrationTier,
   gramsToDisplayValue,
 } from '@/lib/sourdough-math';
+import dynamic from 'next/dynamic';
 import { DoughConsistencyMeter } from '@/components/DoughConsistencyMeter';
-import { ShareCardModal } from '@/components/ShareCardModal';
+
+const ShareCardModal = dynamic(
+  () => import('@/components/ShareCardModal').then((mod) => mod.ShareCardModal),
+  { ssr: false }
+);
 
 interface NumericUnitInputProps {
   id: string;
@@ -1424,13 +1429,15 @@ export function SourdoughCalculator() {
         </div>
       )}
 
-      <ShareCardModal
-        isOpen={shareOpen}
-        onClose={() => setShareOpen(false)}
-        state={recipe}
-        result={result}
-        unit={unit}
-      />
+      {shareOpen && (
+        <ShareCardModal
+          isOpen={shareOpen}
+          onClose={() => setShareOpen(false)}
+          state={recipe}
+          result={result}
+          unit={unit}
+        />
+      )}
     </section>
   );
 }

@@ -5,6 +5,9 @@ import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { ContactForm } from '@/components/ContactForm';
 
+export const dynamic = 'force-static';
+export const revalidate = 604800;
+
 export const metadata: Metadata = {
   title: 'Contact Us – Sourdough Hydration Calculator',
   description:

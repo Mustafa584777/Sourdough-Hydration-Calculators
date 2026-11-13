@@ -5,6 +5,9 @@ import { EditorialSections } from '@/components/EditorialSections';
 import { Footer } from '@/components/Footer';
 import { FAQ_ITEMS } from '@/lib/sourdough-math';
 
+export const dynamic = 'force-static';
+export const revalidate = 604800;
+
 export const metadata: Metadata = {
   alternates: {
     canonical: 'https://sourdoughhydrationcalculator.online/',

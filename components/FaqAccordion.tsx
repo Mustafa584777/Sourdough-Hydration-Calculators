@@ -35,16 +35,19 @@ export function FaqAccordion({ items }: FaqAccordionProps) {
                 />
               </button>
             </h3>
-            {isOpen && (
-              <div
-                id={`faq-panel-${idx}`}
-                role="region"
-                aria-labelledby={`faq-trigger-${idx}`}
-                className="pb-4 pr-8 text-sm leading-relaxed text-stone-600 sm:text-base"
-              >
-                {item.answer}
-              </div>
-            )}
+            <div
+              id={`faq-panel-${idx}`}
+              role="region"
+              aria-labelledby={`faq-trigger-${idx}`}
+              hidden={!isOpen}
+              className={
+                isOpen
+                  ? 'pb-4 pr-8 text-sm leading-relaxed text-stone-600 sm:text-base'
+                  : 'hidden'
+              }
+            >
+              {item.answer}
+            </div>
           </div>
         );
       })}

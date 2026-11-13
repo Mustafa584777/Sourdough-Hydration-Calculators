@@ -6,7 +6,8 @@ const fraunces = Fraunces({
   subsets: ['latin'],
   variable: '--font-fraunces',
   display: 'swap',
-  weight: ['500', '600', '700'],
+  weight: ['600', '700'],
+  adjustFontFallback: true,
 });
 
 const plusJakartaSans = Plus_Jakarta_Sans({
@@ -14,13 +15,15 @@ const plusJakartaSans = Plus_Jakarta_Sans({
   variable: '--font-plus-jakarta',
   display: 'swap',
   weight: ['400', '500', '600', '700'],
+  adjustFontFallback: true,
 });
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ['latin'],
   variable: '--font-jetbrains-mono',
   display: 'swap',
-  weight: ['400', '500', '600', '700'],
+  weight: ['500', '600'],
+  adjustFontFallback: true,
 });
 
 const SITE_URL = 'https://sourdoughhydrationcalculator.online';
@@ -28,9 +31,11 @@ const PAGE_TITLE = "Sourdough Hydration Calculator Online – True Baker's Perce
 const PAGE_DESCRIPTION =
   "Free online sourdough hydration calculator with starter & levain math. Calculate true dough hydration, baker's percentages, flour blends, and scale recipes in grams or ounces.";
 
+export const revalidate = 604800;
+
 export const viewport: Viewport = {
   width: 'device-width',
-  initialScale: 0.7,
+  initialScale: 0.6,
 };
 
 export const metadata: Metadata = {
@@ -77,6 +82,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <script
           async
+          defer
+          fetchPriority="low"
           src="https://www.googletagmanager.com/gtm.js?id=GTM-T5K3FG6K"
         />
         <script
