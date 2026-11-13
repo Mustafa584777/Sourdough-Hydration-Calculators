@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Fraunces, Plus_Jakarta_Sans, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 
@@ -28,6 +28,11 @@ const PAGE_TITLE = "Sourdough Hydration Calculator Online – True Baker's Perce
 const PAGE_DESCRIPTION =
   "Free online sourdough hydration calculator with starter & levain math. Calculate true dough hydration, baker's percentages, flour blends, and scale recipes in grams or ounces.";
 
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: PAGE_TITLE,
@@ -42,7 +47,7 @@ export const metadata: Metadata = {
     'recipe scaler sourdough',
   ],
   alternates: {
-    canonical: SITE_URL,
+    canonical: './',
   },
   openGraph: {
     title: PAGE_TITLE,

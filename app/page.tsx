@@ -1,8 +1,15 @@
+import type { Metadata } from 'next';
 import { Header } from '@/components/Header';
 import { SourdoughCalculator } from '@/components/SourdoughCalculator';
 import { EditorialSections } from '@/components/EditorialSections';
 import { Footer } from '@/components/Footer';
 import { FAQ_ITEMS } from '@/lib/sourdough-math';
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: 'https://sourdoughhydrationcalculator.online/',
+  },
+};
 
 const softwareSchema = {
   '@context': 'https://schema.org',
