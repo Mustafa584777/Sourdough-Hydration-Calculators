@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
-import { FAQItem } from '@/lib/sourdough-math';
+import { FAQItem } from '@/lib/editorial-data';
 
 interface FaqAccordionProps {
   items: FAQItem[];

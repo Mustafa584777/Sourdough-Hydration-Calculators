@@ -3,7 +3,7 @@ import { Header } from '@/components/Header';
 import { SourdoughCalculator } from '@/components/SourdoughCalculator';
 import { EditorialSections } from '@/components/EditorialSections';
 import { Footer } from '@/components/Footer';
-import { FAQ_ITEMS } from '@/lib/sourdough-math';
+import { FAQ_ITEMS } from '@/lib/editorial-data';
 
 export const dynamic = 'force-static';
 export const revalidate = 604800;

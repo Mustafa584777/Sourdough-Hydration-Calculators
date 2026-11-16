@@ -7,6 +7,7 @@ const fraunces = localFont({
   variable: '--font-fraunces',
   display: 'swap',
   weight: '600 700',
+  adjustFontFallback: 'Times New Roman',
   fallback: ['Georgia', 'serif'],
 });
 
@@ -15,6 +16,7 @@ const plusJakartaSans = localFont({
   variable: '--font-plus-jakarta',
   display: 'swap',
   weight: '400 700',
+  adjustFontFallback: 'Arial',
   fallback: ['system-ui', 'sans-serif'],
 });
 
@@ -23,6 +25,7 @@ const jetbrainsMono = localFont({
   variable: '--font-jetbrains-mono',
   display: 'swap',
   weight: '500 600',
+  adjustFontFallback: false,
   fallback: ['ui-monospace', 'monospace'],
 });
 
@@ -81,16 +84,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     >
       <head>
         <script
-          async
-          defer
-          fetchPriority="low"
-          src="https://www.googletagmanager.com/gtm.js?id=GTM-T5K3FG6K"
-        />
-        <script
           dangerouslySetInnerHTML={{
-            __html: `window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());`,
+            __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());(function(){var l=false;function loadGTM(){if(l)return;l=true;window.dataLayer.push({'gtm.start':Date.now(),event:'gtm.js'});var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtm.js?id=GTM-T5K3FG6K';document.head.appendChild(s);}['pointerdown','keydown','scroll','touchstart'].forEach(function(e){window.addEventListener(e,loadGTM,{once:true,passive:true});});window.addEventListener('load',function(){setTimeout(loadGTM,3500);});})();`,
           }}
         />
       </head>

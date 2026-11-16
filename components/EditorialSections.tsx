@@ -1,4 +1,4 @@
-import { FAQ_ITEMS, HYDRATION_CHART_ROWS } from '@/lib/sourdough-math';
+import { FAQ_ITEMS, HYDRATION_CHART_ROWS } from '@/lib/editorial-data';
 import { FaqAccordion } from '@/components/FaqAccordion';
 import { PresetLoaderButton } from '@/components/PresetLoaderButton';
 
