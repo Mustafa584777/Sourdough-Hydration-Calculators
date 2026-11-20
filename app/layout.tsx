@@ -30,9 +30,9 @@ const jetbrainsMono = localFont({
 });
 
 const SITE_URL = 'https://sourdoughhydrationcalculator.online';
-const PAGE_TITLE = "Sourdough Hydration Calculator Online – True Baker's Percentage Tool";
+const PAGE_TITLE = "Sourdough Hydration Calculator – True Baker's Percentage Tool";
 const PAGE_DESCRIPTION =
-  "Free online sourdough hydration calculator with starter & levain math. Calculate true dough hydration, baker's percentages, flour blends, and scale recipes in grams or ounces.";
+  "Free Sourdough Hydration Calculator online with starter math. Calculate true dough hydration, baker's percentages, and scale loaves in grams or ounces.";
 
 export const revalidate = 604800;
 

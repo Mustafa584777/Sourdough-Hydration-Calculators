@@ -252,7 +252,11 @@ export function SourdoughCalculator() {
             Sourdough Hydration Calculator
           </h1>
           <p className="mt-1.5 text-sm leading-relaxed text-stone-600 sm:text-base">
-            Calculate true dough hydration, baker&apos;s percentages, and starter flour-water
+            Use our free{' '}
+            <strong className="font-semibold text-[#1C1917]">
+              Sourdough Hydration Calculator online
+            </strong>{' '}
+            to calculate true dough hydration, baker&apos;s percentages, and starter flour-water
             ratios in real time.
           </p>
         </div>
