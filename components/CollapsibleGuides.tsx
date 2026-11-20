@@ -1,6 +1,3 @@
-'use client';
-
-import { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 import { BakingGuideItem, GuideTextSegment } from '@/lib/baking-guides-data';
 
@@ -10,14 +7,7 @@ interface CollapsibleGuidesProps {
 
 function renderSegments(segments: GuideTextSegment[]) {
   return segments.map((seg, i) => {
-    if (seg.boldKeyword) {
-      return (
-        <strong key={i} className="font-semibold text-[#1C1917]">
-          {seg.text}
-        </strong>
-      );
-    }
-    if (seg.strong) {
+    if (seg.boldKeyword || seg.strong) {
       return (
         <strong key={i} className="font-semibold text-[#1C1917]">
           {seg.text}
@@ -29,55 +19,30 @@ function renderSegments(segments: GuideTextSegment[]) {
 }
 
 export function CollapsibleGuides({ items }: CollapsibleGuidesProps) {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
-
   return (
     <div className="divide-y divide-stone-200 rounded-2xl border border-stone-200 bg-white">
-      {items.map((item, idx) => {
-        const isOpen = openIndex === idx;
-        return (
-          <article key={item.id} id={item.id} className="px-4 py-1 sm:px-6">
-            <h3>
-              <button
-                type="button"
-                aria-expanded={isOpen}
-                aria-controls={`guide-panel-${item.id}`}
-                id={`guide-trigger-${item.id}`}
-                onClick={() => setOpenIndex(isOpen ? null : idx)}
-                className="flex min-h-[60px] w-full items-center justify-between gap-4 py-3.5 text-left transition-colors hover:text-[#C2410C] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C2410C] cursor-pointer"
-              >
-                <span className="space-y-0.5 pr-2">
-                  <span className="block text-[11px] font-semibold uppercase tracking-widest text-[#C2410C]">
-                    {item.badge}
-                  </span>
-                  <span className="block font-serif text-base font-semibold text-[#1C1917] sm:text-lg">
-                    {item.title}
-                  </span>
-                  <span className="block text-xs font-normal text-stone-500 sm:text-sm">
-                    {item.summary}
-                  </span>
+      {items.map((item, idx) => (
+        <article key={item.id} id={item.id} className="px-4 py-1 sm:px-6">
+          <details className="group" open={idx === 0}>
+            <summary className="flex min-h-[60px] w-full list-none items-center justify-between gap-4 py-3.5 text-left transition-colors hover:text-[#C2410C] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C2410C] cursor-pointer [&::-webkit-details-marker]:hidden">
+              <div className="space-y-0.5 pr-2">
+                <span className="block text-[11px] font-semibold uppercase tracking-widest text-[#C2410C]">
+                  {item.badge}
                 </span>
-                <ChevronDown
-                  className={`h-5 w-5 shrink-0 text-stone-500 transition-transform duration-200 ${
-                    isOpen ? 'rotate-180 text-[#C2410C]' : ''
-                  }`}
-                  aria-hidden="true"
-                />
-              </button>
-            </h3>
+                <h3 className="font-serif text-base font-semibold text-[#1C1917] sm:text-lg">
+                  {item.title}
+                </h3>
+                <p className="text-xs font-normal text-stone-500 sm:text-sm">
+                  {item.summary}
+                </p>
+              </div>
+              <ChevronDown
+                className="h-5 w-5 shrink-0 text-stone-500 transition-transform duration-200 group-open:rotate-180 group-open:text-[#C2410C]"
+                aria-hidden="true"
+              />
+            </summary>
 
-            {/* Rendered unconditionally in SSR HTML so search crawlers index all guide content */}
-            <div
-              id={`guide-panel-${item.id}`}
-              role="region"
-              aria-labelledby={`guide-trigger-${item.id}`}
-              hidden={!isOpen}
-              className={
-                isOpen
-                  ? 'border-t border-stone-100 pt-3.5 pb-5 space-y-3.5 text-sm leading-relaxed text-stone-700 sm:text-base'
-                  : 'hidden'
-              }
-            >
+            <div className="border-t border-stone-100 pt-3.5 pb-5 space-y-3.5 text-sm leading-relaxed text-stone-700 sm:text-base">
               {item.paragraphs.map((para, pIdx) => (
                 <p key={pIdx}>{renderSegments(para)}</p>
               ))}
@@ -126,9 +91,9 @@ export function CollapsibleGuides({ items }: CollapsibleGuidesProps) {
                 </div>
               )}
             </div>
-          </article>
-        );
-      })}
+          </details>
+        </article>
+      ))}
     </div>
   );
 }

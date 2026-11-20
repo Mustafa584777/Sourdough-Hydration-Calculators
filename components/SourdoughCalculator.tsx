@@ -110,7 +110,11 @@ const DEFAULT_TARGET_STATE: TargetModeState = {
   saltPercent: 2,
 };
 
-export function SourdoughCalculator() {
+interface SourdoughCalculatorProps {
+  heroIntro?: React.ReactNode;
+}
+
+export function SourdoughCalculator({ heroIntro }: SourdoughCalculatorProps) {
   const [mode, setMode] = useState<CalculatorMode>('forward');
   const [unit, setUnit] = useState<Unit>('g');
   const [activePresetId, setActivePresetId] = useState<string | null>('classic-tartine');
@@ -247,19 +251,21 @@ export function SourdoughCalculator() {
     >
       {/* Compact Editorial Headline & Mode Controls */}
       <div className="no-print mb-6 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-        <div className="max-w-2xl">
-          <h1 className="font-serif text-3xl font-semibold tracking-tight text-[#1C1917] sm:text-4xl [text-wrap:balance]">
-            Sourdough Hydration Calculator
-          </h1>
-          <p className="mt-1.5 text-sm leading-relaxed text-stone-600 sm:text-base">
-            Use this free{' '}
-            <strong className="font-semibold text-[#1C1917]">
+        {heroIntro ?? (
+          <div className="max-w-2xl">
+            <h1 className="font-serif text-3xl font-semibold tracking-tight text-[#1C1917] sm:text-4xl [text-wrap:balance]">
               Sourdough Hydration Calculator
-            </strong>{' '}
-            to calculate true dough hydration, baker&apos;s percentages, and starter flour-water
-            ratios in real time.
-          </p>
-        </div>
+            </h1>
+            <p className="mt-1.5 text-sm leading-relaxed text-stone-600 sm:text-base">
+              Use this free{' '}
+              <strong className="font-semibold text-[#1C1917]">
+                Sourdough Hydration Calculator
+              </strong>{' '}
+              to calculate true dough hydration, baker&apos;s percentages, and starter flour-water
+              ratios in real time.
+            </p>
+          </div>
+        )}
 
         {/* Unit & Mode Segmented Controls */}
         <div className="flex w-full flex-col gap-2.5 sm:w-auto sm:flex-row sm:flex-wrap sm:items-center sm:gap-3">

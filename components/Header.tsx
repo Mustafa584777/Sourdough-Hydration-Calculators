@@ -24,7 +24,6 @@ export function Header() {
             alt="Sourdough Hydration logo"
             width={32}
             height={32}
-            priority
             referrerPolicy="no-referrer"
             className="h-8 w-8 rounded-md object-contain shrink-0"
           />

@@ -1,3 +1,4 @@
+import path from 'path';
 import type { NextConfig } from 'next';
 
 const SEVEN_DAYS_SECONDS = 60 * 60 * 24 * 7; // 604800 seconds (7 days)
@@ -52,7 +53,17 @@ const nextConfig: NextConfig = {
     ];
   },
   output: 'standalone',
-  webpack: (config, { dev }) => {
+  webpack: (config, { dev, isServer, webpack }) => {
+    // Replace Next.js built-in legacy ES2019 polyfills on client builds targeting modern browsers (ES2022+)
+    if (!isServer) {
+      config.plugins.push(
+        new webpack.NormalModuleReplacementPlugin(
+          /build[\\/]polyfills[\\/]polyfill-module(\.js)?$/,
+          path.resolve(process.cwd(), 'lib/empty-polyfill.js')
+        )
+      );
+    }
+
     // HMR is disabled in AI Studio via DISABLE_HMR env var.
     // Do not modify—file watching is disabled to prevent flickering during agent edits.
     if (dev && process.env.DISABLE_HMR === 'true') {

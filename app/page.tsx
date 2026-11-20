@@ -135,7 +135,23 @@ export default function HomePage() {
       <div className="flex min-h-screen flex-col">
         <Header />
         <main className="flex-1">
-          <SourdoughCalculator />
+          <SourdoughCalculator
+            heroIntro={
+              <div className="max-w-2xl">
+                <h1 className="font-serif text-3xl font-semibold tracking-tight text-[#1C1917] sm:text-4xl [text-wrap:balance]">
+                  Sourdough Hydration Calculator
+                </h1>
+                <p className="mt-1.5 text-sm leading-relaxed text-stone-600 sm:text-base">
+                  Use this free{' '}
+                  <strong className="font-semibold text-[#1C1917]">
+                    Sourdough Hydration Calculator
+                  </strong>{' '}
+                  to calculate true dough hydration, baker&apos;s percentages, and starter
+                  flour-water ratios in real time.
+                </p>
+              </div>
+            }
+          />
           <EditorialSections />
         </main>
         <Footer />
