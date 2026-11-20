@@ -177,7 +177,7 @@ export const FAQ_ITEMS: FAQItem[] = [
   {
     question: 'What is the best sourdough calculator?',
     answer:
-      'The best sourdough calculator automatically splits your sourdough starter or levain into its true flour and water weights, supports multiple flours and stiff or liquid starters, scales batches instantly, and works fast offline without cluttered forms—all built into this free Sourdough Hydration Calculator.',
+      'A top-tier sourdough math tool automatically splits your starter or levain into its true flour and water weights, supports flour blends and stiff starters, scales batches instantly, and works fast offline without cluttered forms—all built into this calculator.',
   },
   {
     question: 'How to tell if sourdough is good quality?',

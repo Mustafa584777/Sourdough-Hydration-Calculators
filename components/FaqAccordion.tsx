@@ -8,6 +8,22 @@ interface FaqAccordionProps {
   items: FAQItem[];
 }
 
+function renderFaqQuestion(question: string) {
+  const target = 'best sourdough calculator';
+  const idx = question.toLowerCase().indexOf(target);
+  if (idx === -1) return question;
+  const before = question.slice(0, idx);
+  const match = question.slice(idx, idx + target.length).toLowerCase();
+  const after = question.slice(idx + target.length);
+  return (
+    <>
+      {before}
+      <strong className="font-bold text-[#1C1917]">{match}</strong>
+      {after}
+    </>
+  );
+}
+
 export function FaqAccordion({ items }: FaqAccordionProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
@@ -26,7 +42,7 @@ export function FaqAccordion({ items }: FaqAccordionProps) {
                 onClick={() => setOpenIndex(isOpen ? null : idx)}
                 className="flex min-h-[52px] w-full items-center justify-between gap-4 py-3.5 text-left text-base font-semibold text-[#1C1917] transition-colors hover:text-[#C2410C] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C2410C] cursor-pointer"
               >
-                <span>{item.question}</span>
+                <span>{renderFaqQuestion(item.question)}</span>
                 <ChevronDown
                   className={`h-5 w-5 shrink-0 text-stone-500 transition-transform duration-200 ${
                     isOpen ? 'rotate-180 text-[#C2410C]' : ''

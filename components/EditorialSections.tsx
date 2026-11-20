@@ -1,12 +1,14 @@
 import { FAQ_ITEMS, HYDRATION_CHART_ROWS } from '@/lib/editorial-data';
+import { BAKING_GUIDE_ITEMS } from '@/lib/baking-guides-data';
 import { FaqAccordion } from '@/components/FaqAccordion';
+import { CollapsibleGuides } from '@/components/CollapsibleGuides';
 import { PresetLoaderButton } from '@/components/PresetLoaderButton';
 
 export function EditorialSections() {
   return (
     <div className="no-print border-t border-stone-200/90 bg-white">
       <div className="mx-auto max-w-6xl space-y-16 px-4 py-14 sm:px-6 sm:py-16">
-        {/* 1. Sourdough Hydration Chart (55% to 90%) */}
+        {/* 1. Water-to-Flour Reference Table (55% to 90%+) */}
         <section id="hydration-chart" aria-labelledby="hydration-chart-heading">
           <div className="max-w-2xl">
             <p className="text-xs font-semibold uppercase tracking-widest text-stone-500">
@@ -16,16 +18,12 @@ export function EditorialSections() {
               id="hydration-chart-heading"
               className="mt-2 font-serif text-2xl font-semibold tracking-tight text-[#1C1917] sm:text-3xl [text-wrap:balance]"
             >
-              Sourdough Hydration Chart (55% to 90%+)
+              Bread Hydration Levels by Style (55% to 90%+)
             </h2>
             <p className="mt-2.5 text-sm leading-relaxed text-stone-600 sm:text-base">
               Hydration shapes everything from dough extensibility to oven spring and crumb
-              openness. Use this{' '}
-              <strong className="font-semibold text-[#1C1917]">
-                Sourdough hydration chart
-              </strong>{' '}
-              to match your target water-to-flour percentage to the bread style you want to
-              bake.
+              openness. Match your target water-to-flour percentage to the bread style you
+              want to bake, or load a preset directly into the calculator.
             </p>
           </div>
 
@@ -208,99 +206,26 @@ export function EditorialSections() {
           </div>
         </section>
 
-        {/* 3. Weight vs. Cups, Spreadsheets & Mobile Baking Guide */}
-        <section
-          id="bakers-workflow"
-          aria-labelledby="bakers-workflow-heading"
-          className="rounded-2xl border border-stone-200 bg-[#FAF8F5] p-6 sm:p-8"
-        >
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
-            <div className="lg:col-span-7 space-y-3.5 text-sm leading-relaxed text-stone-700 sm:text-base">
-              <p className="text-xs font-semibold uppercase tracking-widest text-stone-500">
-                03 · Accuracy &amp; Workflow
-              </p>
-              <h2
-                id="bakers-workflow-heading"
-                className="font-serif text-2xl font-semibold tracking-tight text-[#1C1917] sm:text-3xl [text-wrap:balance]"
-              >
-                Why Bakers Prefer Weight Over Cups &amp; Spreadsheets
-              </h2>
-              <p>
-                Many home bakers begin by looking for a{' '}
-                <strong className="font-semibold text-[#1C1917]">
-                  Sourdough hydration calculator in cups
-                </strong>{' '}
-                or setting up a manual{' '}
-                <strong className="font-semibold text-[#1C1917]">
-                  Sourdough calculator Excel
-                </strong>{' '}
-                sheet. While 1 US cup of bread flour averages around 120g–130g and 1 cup of
-                water weighs roughly 237g, sifted versus scooped flour varies by up to
-                20%—skewing hydration by 8–10 points in the bowl.
-              </p>
-              <p>
-                Whether you need a{' '}
-                <strong className="font-semibold text-[#1C1917]">
-                  Simple sourdough calculator
-                </strong>{' '}
-                for your weekend country boule or a responsive{' '}
-                <strong className="font-semibold text-[#1C1917]">
-                  Sourdough Hydration Calculator app
-                </strong>{' '}
-                on your countertop tablet, weighing in grams or ounces removes all
-                guesswork. Built to be the{' '}
-                <strong className="font-semibold text-[#1C1917]">
-                  Best Sourdough hydration calculator free
-                </strong>{' '}
-                of ads clutter or paywalls, our instant client-side math gives you the
-                precision of the{' '}
-                <strong className="font-semibold text-[#1C1917]">
-                  Best Sourdough Calculator
-                </strong>{' '}
-                without maintaining complex spreadsheet formulas.
-              </p>
-            </div>
+        {/* 3. Collapsible Baking Guides (Deduplicated & Reordered Topics, Full SSR HTML) */}
+        <section id="baking-guides" aria-labelledby="baking-guides-heading">
+          <div className="max-w-2xl">
+            <p className="text-xs font-semibold uppercase tracking-widest text-stone-500">
+              03 · Baking Knowledge Base
+            </p>
+            <h2
+              id="baking-guides-heading"
+              className="mt-2 font-serif text-2xl font-semibold tracking-tight text-[#1C1917] sm:text-3xl [text-wrap:balance]"
+            >
+              Sourdough Fermentation, Preferments &amp; Conversion Guides
+            </h2>
+            <p className="mt-2.5 text-sm leading-relaxed text-stone-600 sm:text-base">
+              Expand any topic below to explore enriched dough liquid adjustments, stiff
+              levain conversions, preferment styles, and cup-to-gram charts.
+            </p>
+          </div>
 
-            <div className="lg:col-span-5 rounded-xl border border-stone-200 bg-white p-5 space-y-3">
-              <h3 className="font-serif text-lg font-semibold text-[#1C1917]">
-                Quick Volume-to-Weight Reference
-              </h3>
-              <p className="text-xs leading-relaxed text-stone-500">
-                Converting an older cup-based loaf into exact grams for the calculator:
-              </p>
-              <dl className="divide-y divide-stone-200/80 text-sm">
-                <div className="flex justify-between py-2">
-                  <dt className="text-stone-600">1 cup Bread Flour (spooned)</dt>
-                  <dd className="font-mono font-semibold text-[#1C1917] tabular-nums">
-                    ~125g (4.4 oz)
-                  </dd>
-                </div>
-                <div className="flex justify-between py-2">
-                  <dt className="text-stone-600">1 cup Whole Wheat Flour</dt>
-                  <dd className="font-mono font-semibold text-[#1C1917] tabular-nums">
-                    ~130g (4.6 oz)
-                  </dd>
-                </div>
-                <div className="flex justify-between py-2">
-                  <dt className="text-stone-600">1 cup Water</dt>
-                  <dd className="font-mono font-semibold text-[#1C1917] tabular-nums">
-                    ~237g (8.4 oz)
-                  </dd>
-                </div>
-                <div className="flex justify-between py-2">
-                  <dt className="text-stone-600">1 cup Ripe 100% Starter</dt>
-                  <dd className="font-mono font-semibold text-[#1C1917] tabular-nums">
-                    ~225g (7.9 oz)
-                  </dd>
-                </div>
-                <div className="flex justify-between py-2">
-                  <dt className="text-stone-600">1 tsp Fine Sea Salt</dt>
-                  <dd className="font-mono font-semibold text-[#1C1917] tabular-nums">
-                    ~6g (0.21 oz)
-                  </dd>
-                </div>
-              </dl>
-            </div>
+          <div className="mt-6">
+            <CollapsibleGuides items={BAKING_GUIDE_ITEMS} />
           </div>
         </section>
 
